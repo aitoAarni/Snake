@@ -20,5 +20,6 @@ class SnakeBlock : public Block {
     Direction get_direction() const {
         return direction;
     }
-    void move_rel(int x, int y);
+    void set_direction(Direction new_direciton); 
+    void move();
 };
