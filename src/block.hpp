@@ -13,6 +13,8 @@ class Block {
     char get_symbol() const;
 };
 
+bool operator==(const Block& b1, const Block& b2);
+
 class SnakeBlock : public Block {
     Direction direction;
     public:

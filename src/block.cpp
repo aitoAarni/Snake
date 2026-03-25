@@ -9,6 +9,14 @@ char Block::get_symbol() const { return symbol;}
 SnakeBlock::SnakeBlock(int x, int y, char sym, Direction dir) :
     Block(x, y, sym), direction(dir) {}
 
+bool operator==(const Block& b1, const Block& b2) {
+    return (
+        b1.get_x() == b2.get_x() &&
+        b1.get_y() == b2.get_y() &&
+        b1.get_symbol() == b2.get_symbol()
+        );
+}
+
 void SnakeBlock::move() {
     using enum Direction;
     int x {0};

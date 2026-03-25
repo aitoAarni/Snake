@@ -3,7 +3,7 @@
 #include <vector>
 
 class Snake {
-    std::vector<Block> body; 
+    std::vector<SnakeBlock> body; 
     public:
     Snake();
     template <typename Callable>
@@ -12,7 +12,8 @@ class Snake {
             print_block(block);
         }
     }
-    // void move();
     void add_block();
-
+    void move_snake(const Direction direction);
 };
+
+bool legal_direction(const Direction d1, const Direction d2);

@@ -1,4 +1,6 @@
 #include "game.hpp"
+#include <chrono>
+#include <thread>
 
 Game::Game(
     Screen sc,
@@ -10,10 +12,16 @@ Game::Game(
 void Game::loop() {
 
     while (is_running.load()) {
+        auto next_frame_time {std::chrono::steady_clock::now() +
+            std::chrono::milliseconds(500)};
+
+        
+        snake.move_snake(direction.load());
         snake.print_body([this](const Block& b) {
             screen.draw_block(b);
         });
         screen.update();
+        std::this_thread::sleep_until(next_frame_time);
     }
     screen.close();
     return;
