@@ -1,6 +1,6 @@
 #include "snake.hpp"
 
-constexpr char symb  {254u};
+constexpr char symb { static_cast<char>(254u) };
 
 Snake::Snake() {
     body.emplace_back(10, 10, symb);

@@ -10,16 +10,6 @@ Screen::Screen() {
 
 }
 
-// void Screen::draw() {
-
-//     int num {0};
-//     char ch {0} ;
-//     int x = 0, y = 0;
-//     while (ch != 'q') {
-//         ch = getch();
-//     }
-
-// }
 
 void Screen::update()  {
     refresh();

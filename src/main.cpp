@@ -1,21 +1,21 @@
+#include <atomic>
 #include <ncurses.h>
+#include "game.hpp"
+#include "controls.hpp"
+#include <thread>
 #include "screen.hpp"
-#include "block.hpp"
+#include "snake.hpp"
 
 int main() {
+
+    std::atomic<Direction> direction;
+    std::atomic<bool> is_running {true};
+    Snake snake;
     Screen screen;
-    Block b1(10, 10, '-');
-    Block b2(10, 11, '|');
-    Block b3(10, 12, '-');
-    Block b4(10, 10, 'A');
-    screen.draw_block(b1);
-    screen.draw_block(b2);
-    // screen.update();
-    auto ch = getch();
-    screen.draw_block(b3);
-    auto ch2 = getch();
-    screen.draw_block(b4);
-    auto ch3 = getch();
-    screen.close();
+
+    std::jthread input_t(input_thread, std::ref(direction), std::ref(is_running));
+    Game game(screen, snake, is_running, direction);
+    game.loop();
+    input_t.join();
     return 0;
 }

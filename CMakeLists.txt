@@ -15,6 +15,8 @@ add_executable(snake
     src/block.cpp
     src/screen.cpp
     src/game.cpp
+    src/snake.cpp
+    src/controls.cpp
 )
 
 # 5. Tell the compiler where to look for your header files (.hpp)
