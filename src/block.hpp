@@ -11,6 +11,9 @@ class Block {
     int get_x() const;
     int get_y() const;
     char get_symbol() const;
+    void set_x(int new_x);
+    void set_y(int new_x);
+    void set_symbol(char new_symbol);
 };
 
 bool operator==(const Block& b1, const Block& b2);

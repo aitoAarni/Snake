@@ -5,6 +5,9 @@ Block::Block(int x, int y, char sym) : x_pos(x), y_pos(y), symbol(sym) {}
 int Block::get_x() const { return x_pos;}
 int Block::get_y() const { return y_pos;}
 char Block::get_symbol() const { return symbol;}
+void Block::set_x(int new_x) {x_pos = new_x;}
+void Block::set_y(int new_y) {y_pos = new_y;}
+void Block::set_symbol(char new_symbol) {symbol = new_symbol;}
 
 SnakeBlock::SnakeBlock(int x, int y, char sym, Direction dir) :
     Block(x, y, sym), direction(dir) {}
@@ -19,8 +22,6 @@ bool operator==(const Block& b1, const Block& b2) {
 
 void SnakeBlock::move() {
     using enum Direction;
-    int x {0};
-    int y {0};
     if (direction == UP) y_pos -= 1;
     else if (direction == RIGHT) x_pos += 1;
     else if (direction == DOWN) y_pos += 1;
