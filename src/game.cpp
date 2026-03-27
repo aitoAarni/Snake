@@ -12,9 +12,9 @@ Game::Game(
         auto screen_size {screen.get_size()};
         int middle_x = screen_size.width / 2;
         int middle_y = screen_size.height / 2;
-
-        game_area.right = middle_x + GAME_ARE_WIDTH / 2;
-        game_area.left = middle_x - GAME_ARE_WIDTH / 2;
+        
+        game_area.right = middle_x + GAME_ARE_WIDTH;
+        game_area.left = middle_x - GAME_ARE_WIDTH;
         game_area.top = middle_y - GAME_ARE_HEIGHT / 2;
         game_area.bottom = middle_y + GAME_ARE_HEIGHT / 2;
 
@@ -23,7 +23,7 @@ Game::Game(
 
 
 void Game::loop() {
-
+    screen.draw_border(game_area);
     while (is_running.load()) {
         auto next_frame_time {std::chrono::steady_clock::now() +
             std::chrono::milliseconds(500)};

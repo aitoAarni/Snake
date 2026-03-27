@@ -1,5 +1,6 @@
 #pragma once
 #include "block.hpp"
+#include "game_level.hpp"
 
 struct ScreenSize {
     int width;
@@ -11,6 +12,7 @@ class Screen {
     Screen();
     void update();
     void draw_block(const Block&);
+    void draw_border(const GameArea&);
     ScreenSize get_size() const;
     void close();
 };
