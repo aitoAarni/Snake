@@ -20,6 +20,10 @@ void Screen::draw_block(const Block& block) {
     mvaddch(block.get_y(), block.get_x()*2+1, block.get_symbol());
 }
 
+ScreenSize Screen::get_size() const {
+    return {LINES, COLS};
+}
+
 void Screen::close() {
     endwin();
 }
