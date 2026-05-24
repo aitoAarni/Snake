@@ -1,4 +1,4 @@
-#include <ncurses.h>
+
 #include "controls.hpp"
 
 void input_thread(std::atomic<Direction>& direction, std::atomic<bool>& is_running) {

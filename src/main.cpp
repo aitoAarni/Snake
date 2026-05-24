@@ -5,6 +5,7 @@
 #include <thread>
 #include "screen.hpp"
 #include "snake.hpp"
+#include <chrono>
 
 int main() {
 
@@ -13,8 +14,9 @@ int main() {
     Snake snake;
     Screen screen;
 
-    std::jthread input_t(input_thread, std::ref(direction), std::ref(is_running));
     Game game(screen, snake, is_running, direction);
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    std::jthread input_t(input_thread, std::ref(direction), std::ref(is_running));
     game.loop();
     input_t.join();
     return 0;
