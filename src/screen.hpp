@@ -1,4 +1,8 @@
 #pragma once
+#include <ncurses.h>
+#include <iostream>
+#include <string>
+#include "config.hpp"
 #include "block.hpp"
 #include "game_level.hpp"
 
@@ -8,6 +12,8 @@ struct ScreenSize {
 };
 
 class Screen {
+    private:
+    void draw_vertical_border(const GameArea&);
     public:
     Screen();
     void update();

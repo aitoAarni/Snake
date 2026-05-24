@@ -1,8 +1,4 @@
-#include <ncurses.h>
-#include <iostream>
 #include <screen.hpp>
-#include <string>
-#include "config.hpp"
 
 
 Screen::Screen() {
@@ -19,11 +15,18 @@ void Screen::update()  {
     refresh();
 }
 
+void Screen::draw_vertical_border(const GameArea& game_area) {
+    for (int i = game_area.top; i <= game_area.bottom; i++) {
+        mvaddch(i, game_area.left, '|');
+        mvaddch(i, game_area.right, '|');
+    }
+}
+
 void Screen::draw_border(const GameArea& game_area) {
     std::string horizontal_string(GAME_ARE_WIDTH * 2, '-');
     mvaddstr(game_area.top, game_area.left, horizontal_string.c_str());
     mvaddstr(game_area.bottom, game_area.left, horizontal_string.c_str());
-
+    draw_vertical_border(game_area); 
 }
 
 void Screen::draw_block(const Block& block) {

@@ -13,7 +13,6 @@ void Snake::add_block() {
 
 void Snake::move_snake(const Direction direction) {
     auto& head {body.front()};
-
     cleanup_symbol.set_x(body.back().get_x());
     cleanup_symbol.set_y(body.back().get_y());
 

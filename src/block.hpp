@@ -28,3 +28,10 @@ class SnakeBlock : public Block {
     void set_direction(Direction new_direciton); 
     void move();
 };
+
+class FoodBlock : public Block {
+    private:
+    void get_random_location();
+    public:
+    FoodBlock(int, int);
+};
