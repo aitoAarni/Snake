@@ -6,7 +6,7 @@ class Snake {
     std::vector<SnakeBlock> body; 
     Block cleanup_symbol {-1, -1, ' '};
     public:
-    Snake();
+    Snake() = default;
     template <typename Callable>
     void print_body(const Callable& print_block) {
         auto& head {body.front()};
@@ -16,6 +16,7 @@ class Snake {
     }
     void add_block();
     void move_snake(const Direction direction);
+    void spawn(int start_x, int start_y);
 };
 
 bool legal_direction(const Direction d1, const Direction d2);

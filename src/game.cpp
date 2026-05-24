@@ -17,7 +17,8 @@ Game::Game(
         game_area.left = middle_x - GAME_ARE_WIDTH;
         game_area.top = middle_y - GAME_ARE_HEIGHT / 2;
         game_area.bottom = middle_y + GAME_ARE_HEIGHT / 2;
-
+        
+        snake.spawn(middle_x / 2, middle_y);
     }
 
 

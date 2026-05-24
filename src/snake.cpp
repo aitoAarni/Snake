@@ -2,9 +2,6 @@
 
 constexpr char symb { static_cast<char>(254u) };
 
-Snake::Snake() {
-    body.emplace_back(10, 10, symb, Direction::RIGHT);
-}
 
 void Snake::add_block() {
     auto last {body.back()};
@@ -25,6 +22,11 @@ void Snake::move_snake(const Direction direction) {
     }
     head.move();
     return;
+}
+
+void Snake::spawn(int start_x, int start_y) {
+    body.clear();
+    body.emplace_back(start_x, start_y, symb, Direction::RIGHT);
 }
 
 bool legal_direction(const Direction d1, const Direction d2) {
