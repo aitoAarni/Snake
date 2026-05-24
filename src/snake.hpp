@@ -1,6 +1,7 @@
 #pragma once
 #include "block.hpp"
 #include <vector>
+#include "game_level.hpp"
 
 class Snake {
     std::vector<SnakeBlock> body; 
@@ -15,7 +16,7 @@ class Snake {
 
     }
     void add_block();
-    void move_snake(const Direction direction);
+    void move_snake(const Direction direction, const GameArea& game_area);
     void spawn(int start_x, int start_y);
 };
 

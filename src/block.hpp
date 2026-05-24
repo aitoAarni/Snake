@@ -1,4 +1,5 @@
 #pragma once
+#include "game_level.hpp"
 #include "controls.hpp"
 
 class Block {
@@ -27,6 +28,7 @@ class SnakeBlock : public Block {
     }
     void set_direction(Direction new_direciton); 
     void move();
+    void keep_inside_game_area(const GameArea& game_area);
 };
 
 class FoodBlock : public Block {

@@ -1,4 +1,6 @@
 #include "block.hpp"
+#include <ncurses.h>
+#include <string>
 
 Block::Block(int x, int y, char sym) : x_pos(x), y_pos(y), symbol(sym) {}
 
@@ -36,6 +38,24 @@ void SnakeBlock::set_direction(Direction new_direciton)
 {
     direction = new_direciton;
 }
+
+void SnakeBlock::keep_inside_game_area(const GameArea& game_area) {
+
+    mvaddstr(1, 1, "    ");
+    mvaddstr(1, 1, std::to_string(get_y()).c_str());
+    mvaddstr(1, 7, "    ");
+    mvaddstr(1, 7, std::to_string(game_area.top).c_str());
+    if (get_x() * 2 <= game_area.left) {
+        set_x( (game_area.right / 2) - 1);
+    } else if ((get_x()) * 2 + 1 >= game_area.right) {
+        set_x((game_area.left / 2) + 1);
+    } else if (get_y() <= game_area.top) {
+        set_y(game_area.bottom-1);
+    } else if (get_y() >= game_area.bottom) {
+        set_y(game_area.top+1);
+    }
+}
+
 
 FoodBlock::FoodBlock(int width, int height) : Block(width, height, ' ') {};
 void FoodBlock::get_random_location() {}

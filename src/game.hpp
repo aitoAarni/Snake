@@ -6,13 +6,13 @@
 #include <atomic>
 
 class Game {
-    Screen screen;
-    Snake snake;
+    Screen& screen;
+    Snake& snake;
     std::atomic<bool>& is_running;
     std::atomic<Direction>& direction;
     GameArea game_area;  
 
     public:
-    Game(Screen, Snake, std::atomic<bool>&, std::atomic<Direction>&);
+    Game(Screen&, Snake&, std::atomic<bool>&, std::atomic<Direction>&);
     void loop();
 };

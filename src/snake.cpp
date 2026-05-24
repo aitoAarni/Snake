@@ -8,7 +8,7 @@ void Snake::add_block() {
     body.emplace_back(last.get_y() ,last.get_x() - 1, symb, last.get_direction());
 }
 
-void Snake::move_snake(const Direction direction) {
+void Snake::move_snake(const Direction direction, const GameArea& game_area) {
     auto& head {body.front()};
     cleanup_symbol.set_x(body.back().get_x());
     cleanup_symbol.set_y(body.back().get_y());
@@ -16,13 +16,16 @@ void Snake::move_snake(const Direction direction) {
     for (auto it {body.rbegin()}; head != *it; it++) {
         it->set_direction((it+1)->get_direction());
         it->move();
+        it->keep_inside_game_area(game_area);
     }
     if (legal_direction(head.get_direction(), direction)) {
         head.set_direction(direction);
     }
     head.move();
+    head.keep_inside_game_area(game_area);
     return;
 }
+
 
 void Snake::spawn(int start_x, int start_y) {
     body.clear();
