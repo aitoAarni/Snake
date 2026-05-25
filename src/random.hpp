@@ -14,7 +14,7 @@ private:
 public:
     RandomPositions() = default;
     RandomPositions(const GameArea &game_area) : rng(std::random_device{}()),
-                                                 x_axel(game_area.left + 1, game_area.right - 1),
+                                                 x_axel(game_area.left + 2, game_area.right - 1),
                                                  y_axel(game_area.top + 1, game_area.bottom - 1) {}
 
     Position operator()()

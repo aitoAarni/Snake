@@ -32,6 +32,31 @@ void Snake::spawn(int start_x, int start_y) {
     body.emplace_back(start_x, start_y, symb, Direction::RIGHT);
 }
 
+void Snake::grow() {
+    auto& tail = body.back();
+    Position new_tail_pos = tail.get_position();
+
+    switch (tail.get_direction()) {
+        case Direction::UP : 
+            new_tail_pos.y++;
+            break;
+        case Direction::RIGHT :
+            new_tail_pos.x--;
+            break;
+        case Direction::DOWN : 
+            new_tail_pos.y--;
+            break;
+        case Direction::LEFT :
+            new_tail_pos.x++;
+            break;
+    }
+    body.emplace_back(new_tail_pos, symb, tail.get_direction());
+}
+
+ Position Snake::get_head_pos() {
+    return body.front().get_position();
+}
+
 bool legal_direction(const Direction d1, const Direction d2) {
     using enum Direction;
     if (d1 == UP && d2 == DOWN) return false;

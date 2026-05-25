@@ -22,6 +22,13 @@ Game::Game(
     food.spawn(game_area);
 }
 
+void Game::handle_snake_food_collision() {
+    if (snake.get_head_pos() == food.get_block().get_position()) {
+        snake.grow();
+        food.generate_new_food_block();
+    }
+}
+
 void Game::loop()
 {
     screen.draw_border(game_area);
@@ -30,6 +37,7 @@ void Game::loop()
         auto next_frame_time{std::chrono::steady_clock::now() +
                              std::chrono::milliseconds(500)};
 
+        handle_snake_food_collision();
         snake.move_snake(direction.load(), game_area);
         snake.print_body([this](const Block &b)
                          { screen.draw_block(b); });

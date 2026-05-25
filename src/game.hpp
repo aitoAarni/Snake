@@ -13,6 +13,7 @@ class Game {
     std::atomic<Direction>& direction;
     GameArea game_area;  
     Food food;
+    void handle_snake_food_collision();
 
 
     public:
