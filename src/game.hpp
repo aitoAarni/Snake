@@ -4,6 +4,7 @@
 #include "controls.hpp"
 #include "game_level.hpp"
 #include <atomic>
+#include "food.hpp"
 
 class Game {
     Screen& screen;
@@ -11,6 +12,8 @@ class Game {
     std::atomic<bool>& is_running;
     std::atomic<Direction>& direction;
     GameArea game_area;  
+    Food food;
+
 
     public:
     Game(Screen&, Snake&, std::atomic<bool>&, std::atomic<Direction>&);

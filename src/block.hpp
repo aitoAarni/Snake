@@ -2,6 +2,11 @@
 #include "game_level.hpp"
 #include "controls.hpp"
 
+struct Position {
+    int x;
+    int y;
+};
+
 class Block {
     protected:
     int x_pos;
@@ -32,8 +37,7 @@ class SnakeBlock : public Block {
 };
 
 class FoodBlock : public Block {
-    private:
-    void get_random_location();
     public:
-    FoodBlock(int, int);
+    FoodBlock(Position position);
+    FoodBlock();
 };

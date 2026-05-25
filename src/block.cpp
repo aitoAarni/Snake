@@ -41,10 +41,6 @@ void SnakeBlock::set_direction(Direction new_direciton)
 
 void SnakeBlock::keep_inside_game_area(const GameArea& game_area) {
 
-    mvaddstr(1, 1, "    ");
-    mvaddstr(1, 1, std::to_string(get_y()).c_str());
-    mvaddstr(1, 7, "    ");
-    mvaddstr(1, 7, std::to_string(game_area.top).c_str());
     if (get_x() * 2 <= game_area.left) {
         set_x( (game_area.right / 2) - 1);
     } else if ((get_x()) * 2 + 1 >= game_area.right) {
@@ -57,5 +53,6 @@ void SnakeBlock::keep_inside_game_area(const GameArea& game_area) {
 }
 
 
-FoodBlock::FoodBlock(int width, int height) : Block(width, height, ' ') {};
-void FoodBlock::get_random_location() {}
+
+FoodBlock::FoodBlock(Position position) : Block(position.x, position.y, static_cast<char>(254u) ) {};
+FoodBlock::FoodBlock() : Block(0, 0, static_cast<char>(254u)) {};

@@ -19,6 +19,7 @@ Game::Game(
     game_area.bottom = middle_y + GAME_ARE_HEIGHT / 2;
 
     snake.spawn(middle_x / 2, middle_y);
+    food.spawn(game_area);
 }
 
 void Game::loop()
@@ -32,6 +33,8 @@ void Game::loop()
         snake.move_snake(direction.load(), game_area);
         snake.print_body([this](const Block &b)
                          { screen.draw_block(b); });
+
+        screen.draw_block(food.get_block());
         screen.update();
         std::this_thread::sleep_until(next_frame_time);
     }
