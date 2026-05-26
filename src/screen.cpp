@@ -37,6 +37,12 @@ void Screen::draw_block(const Block& block) {
 ScreenSize Screen::get_size() const {
     return {COLS, LINES};
 }
+void Screen::draw_game_over_screen(const GameArea& game_area) {
+    std::string text {"Game Over... press r for retry and q for quit"};
+    int align_text_x = game_area.left + GAME_ARE_WIDTH - text.size() / 2;
+    mvaddstr(game_area.top + 1, align_text_x, text.c_str());
+    
+}
 
 void Screen::close() {
     endwin();

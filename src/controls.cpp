@@ -1,9 +1,9 @@
 
 #include "controls.hpp"
 
-void input_thread(std::atomic<Direction>& direction, std::atomic<bool>& is_running) {
+void input_thread(std::atomic<Direction>& direction, std::atomic<int>& game_state) {
     char chr {};
-    while (is_running.load()) {
+    while (game_state.load()) {
         chr = getch();
         switch (chr) {
             case 'w' : 
@@ -23,8 +23,11 @@ void input_thread(std::atomic<Direction>& direction, std::atomic<bool>& is_runni
             continue;
 
             case 'q' :
-            is_running.store(false);
+            game_state.store(0);
             continue;
+
+            case 'r' :
+            game_state.store(1);
         }
     }
 }

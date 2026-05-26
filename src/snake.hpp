@@ -15,11 +15,11 @@ class Snake {
         print_block(cleanup_symbol);
 
     }
-    void add_block();
     void move_snake(const Direction direction, const GameArea& game_area);
     void spawn(int start_x, int start_y);
-    void grow();
+    void grow(const GameArea&);
     Position get_head_pos();
+    bool eats_own_tail();
 };
 
 bool legal_direction(const Direction d1, const Direction d2);

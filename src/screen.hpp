@@ -19,6 +19,7 @@ class Screen {
     void update();
     void draw_block(const Block&);
     void draw_border(const GameArea&);
+    void draw_game_over_screen(const GameArea&);
     ScreenSize get_size() const;
     void close();
 };

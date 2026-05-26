@@ -2,12 +2,6 @@
 
 constexpr char symb { static_cast<char>(254u) };
 
-
-void Snake::add_block() {
-    auto last {body.back()};
-    body.emplace_back(last.get_y() ,last.get_x() - 1, symb, last.get_direction());
-}
-
 void Snake::move_snake(const Direction direction, const GameArea& game_area) {
     auto& head {body.front()};
     cleanup_symbol.set_x(body.back().get_x());
@@ -32,7 +26,7 @@ void Snake::spawn(int start_x, int start_y) {
     body.emplace_back(start_x, start_y, symb, Direction::RIGHT);
 }
 
-void Snake::grow() {
+void Snake::grow(const GameArea& game_area) {
     auto& tail = body.back();
     Position new_tail_pos = tail.get_position();
 
@@ -50,11 +44,21 @@ void Snake::grow() {
             new_tail_pos.x++;
             break;
     }
-    body.emplace_back(new_tail_pos, symb, tail.get_direction());
+    SnakeBlock new_tail(new_tail_pos, symb, tail.get_direction());
+    new_tail.keep_inside_game_area(game_area);
+    body.push_back(new_tail);
 }
 
- Position Snake::get_head_pos() {
+Position Snake::get_head_pos() {
     return body.front().get_position();
+}
+
+bool Snake::eats_own_tail() {
+    auto head_pos = get_head_pos();
+    for (int i {1}; i < body.size(); i++) {
+        if (head_pos == body[i].get_position()) return true;
+    }
+    return false;
 }
 
 bool legal_direction(const Direction d1, const Direction d2) {
